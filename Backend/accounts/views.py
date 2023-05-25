@@ -169,4 +169,42 @@ class ActivityView(APIView):
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
+class OccupationView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, reqest, *args, **kwargs):
+        account = Account.objects.get(user=self.request.user)
+        occupation = Occupation.objects.filter(user=account)
+        serializer = OccupationSerializer(occupation, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    def post(self, request, *args, **kwargs):
+        account = Account.objects.get(user=self.request.user)
+        occupation = Occupation.objects.filter(user=account)
+        data = {
+            'user' : request.user,
+            'name' : request.data.get('name'),
+            'working_hour' : request.data.get('working_hour')
+        }
+        serializer = OccupationSerializer(occupation, data=data, partial=True)
+        if serializer.is_valid:
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_Ok)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def put(self, request, pk, *args, **kwargs):
+        account = Account.objects.get(user=self.request.user)
+        occupation = Occupation.objects.filter(user=account)
+        serializer = OccupationSerializer(occupation, data=request.data, partial=True)
+        if serializer.is_valid:
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_Ok)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request, pk, *args, **kwargs):
+        if request.user.is_authenticated:
+            if Account.objects.filter(user=self.request.user).exists():
+                account = Account.objects.get(user=self.request.user)
+                occupation = Occupation.objects.filter(id=pk, user=account)
+                occupation.delete()
+            else:
+                return Response(status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
