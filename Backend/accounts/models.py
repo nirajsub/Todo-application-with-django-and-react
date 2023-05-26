@@ -102,6 +102,7 @@ class Goal(models.Model):
     due_date = models.DateField(auto_now=False, auto_now_add=False)
 
     task_per_day = models.PositiveIntegerField(default=1)
+    completed = models.BooleanField(default=False)
 
     # def tasks_completed_today(self, user):
     #     today = timezone.now().date()
