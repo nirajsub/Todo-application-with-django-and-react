@@ -1,9 +1,13 @@
-*{
-    margin: 0;
-    padding: 0;
-}
-
-.heading{
-    font-size: 26px;
-    font-weight: 600;
-}
+.App {
+    width: 100vw;
+    height: 100vh;
+    background: #ffffff;
+    overflow-x: hidden;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .App::-webkit-scrollbar {
+    display: none;
+  }
+  
