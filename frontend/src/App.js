@@ -1,15 +1,14 @@
-import { useState } from "react";
-import "./App.css";
-import SearchBar from "./components/SearchBar";
+import "./index.css"
+
+import Header from "./components/Header";
+import Meme from "./components/Meme";
 
 export default function App() {
   return (
     <div className="App">
-      <SearchBar />
+      <Header />
+      <Meme />
     </div>
   );
 }
-
-
-
 

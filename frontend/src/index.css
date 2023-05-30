@@ -31,3 +31,9 @@
   img {
     max-width: 100%;
   }
+
+.navbar {
+  background: linear-gradient(to right, #682281, #A526CF);
+  color: white; 
+  width: 100%;
+  }
