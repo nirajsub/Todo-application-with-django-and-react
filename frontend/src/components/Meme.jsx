@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import MemesData from "./MemesData";
 
-
-
 function Meme() {
-    const memesArray = MemesData.data.memes
-    const randomNumber = Math.floor(Math.random() * memesArray.length)
-    const url = memesArray[randomNumber].url
-    console.log(url);
+
+    const [memeImage, setMemeImage] = useState("")
+    
+    function getMemeImage() {
+      const memesArray = MemesData.data.memes
+      const randomNumber = Math.floor(Math.random() * memesArray.length)
+      setMemeImage(memesArray[randomNumber].url)
+    }
+    // console.log(setMemeImage);
 
 
     const [counter, setCounter] = useState(0)
@@ -62,13 +65,13 @@ function Meme() {
           <button
             type="button"
             className="bg-gradient-to-r from-purple-800 to-pink-600 text-white py-2 px-4 rounded-md"
-            onClick={Meme}
+            onClick={getMemeImage}
           >
             Get a new meme
           </button>
         </div>
         <div className="flex justify-center">
-            <img src={url}/>
+            <img src={memeImage} alt="this is meme"/>
         </div>
       </form>
     </main>
