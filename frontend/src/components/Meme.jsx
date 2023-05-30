@@ -71,7 +71,7 @@ function Meme() {
           </button>
         </div>
         <div className="flex justify-center">
-            <img src={memeImage} alt="this is meme"/>
+            <img src={memeImage} alt="this is meme" className="w-120"/>
         </div>
       </form>
     </main>
