@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import MemesData from "./MemesData";
 
+
 function Meme() {
 
     const [memeImage, setMemeImage] = useState("")
@@ -11,32 +12,9 @@ function Meme() {
       setMemeImage(memesArray[randomNumber].url)
     }
     // console.log(setMemeImage);
-
-
-    const [counter, setCounter] = useState(0)
-    function sub() {
-        setCounter(prevCount => prevCount - 1)
-    }
-    function add() {
-        setCounter(prevCount => prevCount + 1)
-    }
   return (
     <main>
       <form>
-        <div>
-        <div className="flex flex-col justify-center items-center">
-            <div>
-                <h1 className="font-bold text-slate-800 text-2xl mb-5">Relax! This is just a counter</h1>
-            </div>
-            <div className="counter">
-            <button type="button" className="counter--minus" onClick={sub}>-</button>
-            <div className="counter--count">
-                <h1>{counter}</h1>
-            </div>
-            <button type="button" className="counter--plus" onClick={add}>+</button>
-            </div>
-        </div>
-        </div>
         <div className="flex justify-center items-center space-x-16 my-6">
           <div className="flex flex-col">
             <label htmlFor="top" className="font-bold text-sm mb-2">
