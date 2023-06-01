@@ -26,6 +26,16 @@ const HomeData = [
         'title':"Harry Potter and The Cursed Child",
         'des':"From $236 / person",
         'location' : "online"
-    }
+    },
+    {
+        'id':"3",
+        'image':"https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1470082995i/29056083.jpg",
+        'rating':"(116)",
+        'country':"USA",
+        'title':"Harry Potter and The Cursed Child",
+        'des':"From $236 / person",
+        'location' : "online"
+    },
+    
 ]
 export default HomeData

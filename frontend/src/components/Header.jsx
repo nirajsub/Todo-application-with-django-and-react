@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <header className="navbar flex justify-between border-b-4 p-3 w-full">
       <div className="flex items-center">
+        <Link to="/">
         <img src={meme} alt="meme-icon" className="meme-icon h-12" />
+        </Link>
         <Link to="/meme">
         <h2 className="ml-5 font-bold text-2xl pl-5">Meme Generator</h2>
       </Link>

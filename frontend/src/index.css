@@ -120,16 +120,20 @@ section {
 }
 .home-container {
   width: 100vw;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap : 1vw;
+  display: grid;
+  padding: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
 }
 .character {
   width: 28vw;
 }
 .card{
   position: relative;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  
 }
 
 .card-badge {

@@ -13,11 +13,11 @@ export default function App() {
       <Header />
       
       <Routes>
+        <Route path="/" element={<Home />} />
         <Route path="/meme" element={<Meme />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/tictac" element={<Tictac />} />
       </Routes>
-      <Home />
       
     </BrowserRouter>
     
