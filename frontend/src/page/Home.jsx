@@ -1,5 +1,5 @@
 import React from 'react'
-import HomeData from './HomeData'
+import HomeData from '../components/HomeData'
 import star from '../images/star.png'
 
 const Home = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import MemesData from "./MemesData";
+import MemesData from "../components/MemesData";
 
 
 function Meme() {

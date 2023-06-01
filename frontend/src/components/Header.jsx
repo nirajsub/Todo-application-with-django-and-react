@@ -18,6 +18,9 @@ const Header = () => {
       <Link to="/tictac">
         <h1 className="ml-5 font-bold text-xl pl-10">Tic-Tac-Toe</h1>
       </Link>
+      <Link to="/tictactoe">
+        <h1 className="ml-5 font-bold text-xl pl-10">Tic-Tac-Toe-2</h1>
+      </Link>
       </div>
       
       <div className="flex items-center">

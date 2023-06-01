@@ -2,10 +2,11 @@ import "./index.css"
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from "./components/Header";
-import Meme from "./components/Meme";
+import Meme from "./page/Meme";
 import Counter from "./components/Counter";
 import Tictac from "./page/Tictac";
-import Home from "./components/Home";
+import Home from "./page/Home";
+import TicTacToe from "./page/TicTacToe";
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
         <Route path="/meme" element={<Meme />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/tictac" element={<Tictac />} />
+        <Route path="/tictactoe" element={<TicTacToe />} />
       </Routes>
       
     </BrowserRouter>

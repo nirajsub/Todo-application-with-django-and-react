@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const Tictac = () => {
   return (
-    <div>
+    <div className="flex justify-center items-center h-screen">
       <Board />
     </div>
   );
@@ -33,35 +33,27 @@ function Board() {
   },[winner])
 
   return (
-    <>
     <div>
+    <div className="flex justify-center text-2xl font-bold items-center">
        {wiwinner && <h3>Winner is Mr. : {wiwinner}</h3>}
     </div>
-      <div className="board-row">
-        <Square value={squares[0]} onSquareClick={ () => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={ () => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={ () => handleClick(2)} />
+    <div className="grid grid-cols-3 gap-2">
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
-      <div className="board-row">
-        <Square value={squares[3]} onSquareClick={ () => handleClick(3)}/>
-        <Square value={squares[4]} onSquareClick={ () => handleClick(4)}/>
-        <Square value={squares[5]} onSquareClick={ () => handleClick(5)}/>
-      </div>
-      <div className="board-row">
-        <Square value={squares[6]} onSquareClick={ () => handleClick(6)}/>
-        <Square value={squares[7]} onSquareClick={ () => handleClick(7)}/>
-        <Square value={squares[8]} onSquareClick={ () => handleClick(8)}/>
-      </div>
-    </>
+    </div>
   );
 }
-
 function Square({value, onSquareClick}) {
-    // const [value, setValue] = useState(null);
-
-    
   return <button 
-  className="square w-20 h-20 border-2 border-sky-300 text-3xl"
+  className="w-20 h-20 border-2 border-sky-300 text-3xl"
   onClick={onSquareClick}
   >
     {value}
@@ -81,7 +73,7 @@ function calculateWinner(squares) {
   ]
   for (let i=0; i<list.length; i++){
     const [a,b,c] = list[i];
-    if (squares[a] && squares [a] === squares[b] && squares[a] === squares[c]){
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]){
       return squares[a]
     }
   }
