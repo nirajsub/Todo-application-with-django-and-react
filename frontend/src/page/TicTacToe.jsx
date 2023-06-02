@@ -3,13 +3,12 @@ import React, { useState } from 'react';
 const TicTacToe = () => {
     return (
         <div className="flex justify-center items-center h-screen">
-            <Board />
+            <Game />
         </div>
     )
 }
-function Board() {
-    const [xIsNext, setXIsNext] = useState(true)
-    const [squares, setSquares] = useState(Array(9).fill(null))
+function Board({xIsNext, squares, onPlay}) {
+    
 
     function handleClick(i) {
         if (squares[i] || winner) {
@@ -18,14 +17,20 @@ function Board() {
         const nextSquares = [...squares]
         nextSquares[i] = xIsNext ? 'X' : 'O'
 
-        setSquares(nextSquares)
-        setXIsNext(!xIsNext)
+        onPlay(nextSquares)
+        onPlay(!xIsNext)
     }
     const winner = calculateWinner(squares)
+    let status;
+    if (winner) {
+        status = "Winner is Mr: " + winner;
+    } else {
+        status = "Next player: " + (xIsNext ? "X" : "O");
+    }
     return (
         <div>
             <div className="flex justify-center text-2xl font-bold items-center">
-                {winner && <h3>Winner is Mr. : {winner}</h3>}
+                <h3>{status}</h3>
             </div>
             <div className="grid grid-cols-3 gap-2">
                 {squares.map((value, index) => (
@@ -33,6 +38,29 @@ function Board() {
                 ))}
             </div>
         </div>
+    )
+}
+function Game() {
+    const [xIsNext, setXIsNext] = useState(true)
+    const [history, setHistory] = useState([Array(9).fill(null)]);
+    const currentSquares = history[history.length - 1];
+
+    function handlePlay(nextSquares) {
+        setHistory([...history, nextSquares]);
+        setXIsNext(!xIsNext);
+      }
+
+    return (
+       
+<div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>{/*TODO*/}</ol>
+      </div>
+    </div>
+        
     )
 }
 function Square({value, onSquareClick}) {
