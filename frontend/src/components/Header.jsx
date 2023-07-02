@@ -18,12 +18,15 @@ const Header = () => {
       <Link to="/tictac">
         <h1 className="ml-5 font-bold text-xl pl-10">Tic-Tac-Toe</h1>
       </Link>
-      <Link to="/tictactoe">
-        <h1 className="ml-5 font-bold text-xl pl-10">Tic-Tac-Toe-2</h1>
+      <Link to="/chatapp">
+        <h1 className="ml-5 font-bold text-xl pl-10">Chat</h1>
       </Link>
       </div>
       
-      <div className="flex items-center">
+      <div className="items-center">
+      <Link to="/signup">
+        <h1 className="ml-5 font-light text-xl pl-10">Signup</h1>
+      </Link>
         <p className="mr-4 font-sans text-xl">React Project</p>
       </div>
     </header>

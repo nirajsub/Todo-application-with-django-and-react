@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 
 const Tictac = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <Game />
+    <div>
+      <Link to="/tictactoe">
+        <h1 className="ml-5 font-bold text-xl pl-10">Tic-Tac-Toe-2</h1>
+      </Link>
+      <div className="flex justify-center items-center h-screen">
+        <Game />
+      </div>
     </div>
   );
 };
@@ -24,12 +30,25 @@ function Game() {
     setCurrentMove(nextMove);
   }
 
-  const moves = history.map((squares, move) => {
+  function getMoveLocation(move) {
+    if (move === 0) {
+      return 'Game start';
+    }
+
+    const row = Math.floor((move - 1) / 3);
+    const col = (move - 1) % 3;
+    return `(${row}, ${col})`;
+  }
+
+  const moves = history.map((squares, move)  => {
     let description;
     if (move > 0) {
-      description = 'Go to move #' + move;
+      description = `Go to move #${move} ${getMoveLocation(move)}`;
     } else {
       description = 'Go to game start';
+    }
+    if (move === currentMove) {
+      description = 'You are at move #' + move;
     }
     return (
       <li key={move}>
@@ -61,39 +80,45 @@ function handleClick(i) {
   nextSquares[i] = xIsNext ? "X" : "O";
   onPlay(nextSquares);
 }
+
 const winner = calculateWinner(squares);
-let status;
-if (winner) {
-  status = "Winner is Mr: " + winner;
-} else {
-  status = "Next player: " + (xIsNext ? "X" : "O");
-}
+  let status;
+  if (winner) {
+    if (winner.symbol) {
+      status = "Winner is Mr: " + winner.symbol;
+    } else {
+      status = "It's a draw!";
+    }
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+  
 return (
   <div>
     <div className="flex justify-center text-2xl font-bold items-center">
       <h3 className="mb-5">{status}</h3>
     </div>
     <div className="grid grid-cols-3 gap-2">
-        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
-        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
-        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
-        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
-        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+        {squares.map((value, index) => (
+          <Square
+            key={index}
+            value={value}
+            onSquareClick={() => handleClick(index)}
+            isWinning={winner && winner.squares.includes(index)}
+          />
+        ))}
       </div>
   </div>
 );
 }
 
-function Square({ value, onSquareClick }) {
+function Square({ value, onSquareClick, isWinning }) {
+  const squareClasses = isWinning ? "winning-square" : "";
 return (
   <button
-    className="w-20 h-20 border-2 border-orange-300 text-3xl"
-    onClick={onSquareClick}
-  >
+      className={`w-20 h-20 border-2 border-sky-300 text-3xl ${squareClasses}`}
+      onClick={onSquareClick}
+    >
     {value}
   </button>
 );
@@ -112,9 +137,20 @@ const list = [
 for (let i = 0; i < list.length; i++) {
   const [a, b, c] = list[i];
   if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-    return squares[a];
+    return {
+      symbol: squares[a],
+      squares: [a, b, c],
+    };
   }
 }
+if (!squares.includes(null)) {
+  return {
+    symbol: null,
+    squares: [],
+  };
+}
+
+return null;
 }
 
 export default Tictac;

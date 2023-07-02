@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom';
 
 const TicTacToe = () => {
   return (
+    <div>
+    <Link to="/tictac">
+    <h1 className="ml-5 font-bold text-xl pl-10">Tic-Tac-Toe</h1>
+  </Link>
     <div className="flex justify-center items-center h-screen">
       <Game />
+    </div>
     </div>
   );
 };
@@ -22,7 +28,7 @@ function Game() {
     function jumpTo(nextMove) {
       setCurrentMove(nextMove);
     }
-  
+
     const moves = history.map((squares, move) => {
       let description;
       if (move > 0) {
@@ -73,13 +79,15 @@ function Board({ xIsNext, squares, onPlay }) {
         <h3 className="mb-5">{status}</h3>
       </div>
       <div className="grid grid-cols-3 gap-2">
-        {squares.map((value, index) => (
-          <Square
-            key={index}
-            value={value}
-            onSquareClick={() => handleClick(index)}
-          />
-        ))}
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
       </div>
     </div>
   );
